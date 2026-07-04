@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Aula 11{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    {# BLUEPRINT no url_for: 'clientes' = apelido do Blueprint, 'listar' = nome da função Python #}
+    {# Por isso é url_for('clientes.listar') e não só url_for('listar') — evita confusão entre módulos #}
+    <nav class="nav">
+        <a href="{{ url_for('dashboard.index') }}">Início</a>
+        <a href="{{ url_for('clientes.listar') }}">Clientes</a>
+        <a href="{{ url_for('pedidos.listar') }}">Pedidos</a>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

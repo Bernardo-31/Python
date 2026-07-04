@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}Locadora{% endblock %}
+
+{% block content %}
+<h1>Locadora de Veiculos</h1>
+<p><a class="btn" href="{{ url_for('locadora.cadastrar') }}">+ Nova locacao</a></p>
+
+{% if locacoes %}
+<table>
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Veiculo</th>
+            <th>Inicio</th>
+            <th>Fim</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for locacao in locacoes %}
+        <tr>
+            <td>{{ locacao.cliente.nome }}</td>
+            <td>{{ locacao.veiculo.modelo }} - {{ locacao.veiculo.placa }}</td>
+            <td>{{ locacao.data_inicio }}</td>
+            <td>{{ locacao.data_fim }}</td>
+            <td>R$ {{ "%.2f"|format(locacao.valor_total) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="vazio">Nenhuma locacao cadastrada.</p>
+{% endif %}
+{% endblock %}
